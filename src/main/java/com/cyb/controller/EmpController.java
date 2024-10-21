@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cyb.entities.Employee;
 import com.cyb.service.EmpService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/emp")
+@PropertySource("classpath:error_msg.properties")
 public class EmpController {
 
 	@Autowired
@@ -30,7 +34,7 @@ public class EmpController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
+	public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody Employee employee){
 		return new ResponseEntity<Employee>(service.saveEmployees(employee), HttpStatus.CREATED);
 	}
 	
