@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -17,8 +18,9 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer eid;
+	@NotNull(message = "employee.name")
 	private String name;
-	@NotNull(message = "Please enter address")
+	@NotEmpty(message = "employee.address")
 	private String address;
 	
 	@OneToMany(cascade = CascadeType.ALL)

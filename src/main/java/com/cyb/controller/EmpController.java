@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,11 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/emp")
-@PropertySource("classpath:error_msg.properties")
 public class EmpController {
 
 	@Autowired
 	EmpService service;
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Employee>> getAllEmployee(){
