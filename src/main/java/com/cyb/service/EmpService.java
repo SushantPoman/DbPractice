@@ -26,11 +26,12 @@ public class EmpService {
 	
 	public Employee findByDetail(String detail) {
 		Optional<Employee> employee = repository.findByDetail(detail);
-		if(employee.isPresent())
-			return employee.get();
-		else 
-			throw new InvalidNumber("employee.number");
-			
+//		if(employee.isPresent())
+//			return employee.get();
+//		else 
+//			throw new InvalidNumber("employee.number");
+		
+		return employee.orElseThrow(() -> new InvalidNumber("employee.number"));
 	}
 	
 	
