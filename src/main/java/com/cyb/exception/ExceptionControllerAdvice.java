@@ -36,4 +36,15 @@ public class ExceptionControllerAdvice {
 		return new ResponseEntity<ErrorInfo>(errorInfo, HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(InvalidNumber.class)
+	public ResponseEntity<ErrorInfo> modelExceptionHandler(InvalidNumber exception) {
+		ErrorInfo errorInfo = new ErrorInfo();
+		errorInfo.setErrorCode(HttpStatus.BAD_REQUEST.value());
+		
+		errorInfo.setErrorMsg(environment.getProperty(exception.getMessage()));
+		errorInfo.setErrorDateTime(LocalDateTime.now());
+		
+		return new ResponseEntity<ErrorInfo>(errorInfo, HttpStatus.BAD_REQUEST);
+	}
+	
 }
